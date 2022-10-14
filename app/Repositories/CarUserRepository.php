@@ -26,7 +26,7 @@ class CarUserRepository implements CarUserInterface {
         $user = User::find($data['user_id']);
         $car = Car::find($data['car_id']);
         if ($car->users()->count() || $user->cars()->count())
-            throw new HttpClientException('Unable to drive car');
+            throw new HttpClientException('The car is not free');
 
         return $car->users()->attach($user);
     }
